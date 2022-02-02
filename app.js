@@ -33,7 +33,7 @@ const getPokemon = async (id) => {
     let url = `https://pokeapi.co/api/v2/pokemon/${id}`;
     let response = await fetch(url);
     let data = await response.json();
-    //  console.log(data);
+    //  console.log(data); veri kontrol işlemi yapıldı.
     createPokemonBox(data);
 };
 const createPokemonBox = (pokemon) => {
