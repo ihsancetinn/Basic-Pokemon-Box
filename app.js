@@ -30,11 +30,14 @@ const initPokemon = async () => {
     }
 };
 const getPokemon = async (id) => {
+    
     let url = `https://pokeapi.co/api/v2/pokemon/${id}`;
     let response = await fetch(url);
     let data = await response.json();
     //  console.log(data); veri kontrol işlemi yapıldı.
+
     createPokemonBox(data);
+
 };
 const createPokemonBox = (pokemon) => {
     const name = pokemon.name[0].toUpperCase() + pokemon.name.slice(1);
@@ -43,12 +46,11 @@ const createPokemonBox = (pokemon) => {
     const type = pokemon.types[0].type.name;
     const color = colors[type];
     // console.log(color);
-
-
     const pokemonEl = document.createElement("div");
     pokemonEl.classList.add("poke-box");
     pokemonEl.style.backgroundColor = `${color}`;
-    pokemonEl.innerHTML = `<img
+    pokemonEl.innerHTML = `
+    <img
     src="https://assets.pokemon.com/assets/cms2/img/pokedex/full/${id}.png"
     alt="${name} image"
   />
@@ -61,13 +63,11 @@ const createPokemonBox = (pokemon) => {
 
 };
 
-
-initPokemon();
-
 searchInput.addEventListener('input', function (e) {
+    
     const pokeNames = document.querySelectorAll(".poke-name");
     const search = searchInput.value.toLowerCase();
-
+    
     pokeNames.forEach((pokeName) => {
         pokeName.parentElement.style.display = "block";
 
@@ -76,3 +76,5 @@ searchInput.addEventListener('input', function (e) {
         }
     })
 });
+
+initPokemon();
